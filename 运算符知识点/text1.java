@@ -13,5 +13,6 @@ public class text1 {
       System.out.println(a>b);
       System.out.println(a<=b);
       System.out.println(a>=b);
+		//关系运算符的返回值都是boolean
 	}
 }
