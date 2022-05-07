@@ -1,12 +1,33 @@
+import java.util.Scanner;
+
 ///**
 // * @author 26568
 // * @date 2022-05-06 19:53
 public class text {
     /**
-     * 计算水仙花数  四叶玫瑰数等
+     * 判断2进制数字1的个数
      * @param args
      */
     public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        int n=scan.nextInt();
+        int count=0;
+        while(n!=0){
+            count++;
+            n=n&(n-1);
+        }
+        System.out.println(count);
+    }
+
+
+
+
+
+    /**
+     * 计算水仙花数  四叶玫瑰数等
+     * @param args
+     */
+    public static void main1(String[] args) {
         int i=0;
         for(i=1;i<=999999;i++) {
             int count=0;//计算数字的位数
