@@ -43,7 +43,7 @@ public class text {
 //}
 
     /**
-     * 递归求阶乘
+     * 递归求1+2+3+4+5
      */
 //    public static int sum(int n){
 //        if(n!=1){
@@ -52,7 +52,7 @@ public class text {
 //        return 1;
 //    }
 //    public static void main(String[] args) {
-
+//
 //        int ret = sum(5);
 //        System.out.println(ret);
 //    }
