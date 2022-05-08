@@ -1,10 +1,3 @@
-
-import java.util.Arrays;
-import java.util.Scanner;
-
-///**
-// * @author 26568
-// * @date 2022-05-06 19:53
 public class text {
     public static int baniarySearch(int[] arr, int key) {
         int left = 0;
@@ -37,4 +30,3 @@ public class text {
     }
 
 }
-
