@@ -1,9 +1,3 @@
-
-import java.util.Arrays;
-
-///**
-// * @author 26568
-// * @date 2022-05-06 19:53
 public class text {
     public static double argArr(int[] arr){
         double max=0;
@@ -26,4 +20,3 @@ public class text {
     }
 
 }
-
