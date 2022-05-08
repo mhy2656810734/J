@@ -1,12 +1,4 @@
-
-import java.util.Scanner;
-
-///**
-// * @author 26568
-// * @date 2022-05-06 19:53
 public class text {
-
-
     public static void main(String[] args) {
         int[] array={1,2,3};
         int[] output=transform(array);
