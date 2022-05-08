@@ -1,9 +1,3 @@
-
-import java.util.Arrays;
-
-///**
-// * @author 26568
-// * @date 2022-05-06 19:53
 public class text {
     public static int maxNum(int[] arr){
         int max=0;
@@ -11,7 +5,7 @@ public class text {
            if(arr[i]>max){
                max=arr[i];
             }
-
+       
         }
         return max;
     }
@@ -26,4 +20,3 @@ public class text {
     }
 
 }
-
