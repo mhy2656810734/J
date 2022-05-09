@@ -18,6 +18,11 @@ public class text {
 //            }
 //            System.out.println();
 //        }
-        System.out.println(Arrays.deepToString(arr));
+        for (int[] tmp:arr) {
+            for (int x:tmp) {
+                System.out.print(x + " ");
+            }
+            System.out.println();
+        }
     }
 }
