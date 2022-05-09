@@ -4,7 +4,7 @@ public class text {
         boolean flag = false;
         int right = arr.length - 1;
         while (left <= right) {
-            int mid = (left + right) / 2;
+            int mid = (left + right) >>>1;
             if (key < arr[mid]) {
                 right = mid - 1;
             } else if (key > arr[mid]) {
