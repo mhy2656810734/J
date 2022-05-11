@@ -3,7 +3,7 @@ class Person{
     //字段->成员变量
     public String name;//name 和 age 是实例成员变量
     public int age;//各种数字类型默认值是0
-    public static String sex;//被static关键字修饰的成员称为静态成员变量   它不属于对象    只属于类Person和实例成员变量
+    public static String sex;//被static关键字修饰的成员称为静态成员变量   它不属于对象的引用    只属于类Person和实例成员变量
                              //静态成员变量存放在方法区且只有一份
     public static boolean flag;//boolean类型默认值是false   引用类型以及自定义类的默认值都是null
     //方法->行为(操作)
