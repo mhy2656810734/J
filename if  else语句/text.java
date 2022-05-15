@@ -5,7 +5,7 @@ public class text {
 	 */
 	public static void main(String[] args) {
 	 Scanner scan = new Scanner(System.in);
-	 //退出循环使用场景  OJ  笔试的环境
+	 // 退出循环使用场景  OJ  笔试的环境
 	 //1.ctr+c(直接中断程序)
 	 //2.ctr+D(正常退出)
 	 while(scan.hasNextInt()) {
