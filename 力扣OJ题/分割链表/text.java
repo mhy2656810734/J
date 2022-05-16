@@ -43,7 +43,6 @@ class Solution {
         // 此时已经将cur中的节点重新进行了排序
         //需要对ba 和 aa进行判断 （因为可能所有值都比x小或大）
         if (ba == null) {
-            ae.next = null; //先将ae.next置为空
             return aa;
         } else if (aa == null) {
             return ba;
