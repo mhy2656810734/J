@@ -1,9 +1,12 @@
 public class text {
     public static void main(String[] args) {
         MyLinkedList myLinkedList = new MyLinkedList();
-//        for(int i=0;i<10;i++) {
-//            myLinkedList.addLast(i);
-//        }
+//        myLinkedList.display();
+//        System.out.println(myLinkedList.search(5));
+//        System.out.println(myLinkedList.size());
+//        myLinkedList.addIndex(5,35);
+//        myLinkedList.display();
+//        myLinkedList.remove(4);
         myLinkedList.addLast(1);
         myLinkedList.addLast(2);
         myLinkedList.addLast(1);
@@ -12,17 +15,9 @@ public class text {
         myLinkedList.addLast(4);
         myLinkedList.addLast(1);
         myLinkedList.addLast(5);
-        myLinkedList.addLast(6);
         myLinkedList.addLast(1);
-        System.out.println(myLinkedList.contains(9));
-        System.out.println("单链表长度为："+myLinkedList.size());
-//        myLinkedList.addIndex(9,10);
-//        myLinkedList.disPlay();
-//        myLinkedList.remove(10);
-//        myLinkedList.remove(9);
-//        myLinkedList.remove(5);
+        myLinkedList.display();
         myLinkedList.removeAllKey(1);
-        myLinkedList.disPlay();
-        myLinkedList.clear();
+        myLinkedList.display();
     }
 }
