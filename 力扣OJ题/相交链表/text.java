@@ -1,0 +1,57 @@
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) {
+ *         val = x;
+ *         next = null;
+ *     }
+ * }
+ */
+ // 核心思路：先默认pl为长链表,ps为短链表, 然后计算差值:len = lenA-lenB 步, 
+ //          如果len是负数就交换长短链表，先让长链表走差值len 步,然后再让一起走，如果有相交的点返回
+ //          如果有一个链表为空结束循环，返回null
+public class Solution {
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        // 默认headA是长链表
+        ListNode pl = headA;
+        ListNode ps = headB;
+        int lenA = 0;
+        int lenB = 0;
+        // 求长度
+        while (pl != null) {
+            lenA++;
+            pl = pl.next;
+        }
+        while (ps != null) {
+            lenB++;
+            ps = ps.next;
+        }
+        int len = lenA - lenB;
+        // 求长度的时候已经走到空了，重新指向头节点
+        pl = headA;
+        ps = headB;
+        // 交换长短链表
+        if (len < 0) {
+            pl = headB;
+            ps = headA;
+            len = -len;
+        }
+        // 此时长链表一定是pl, 让pl走差值步
+        while (len > 0) {
+                pl = pl.next;
+                len--;
+            
+        }
+        // 差值步已经走完，开始一起走
+        while ((ps != pl)&&(ps != null)&&(pl != null)) {
+            ps = ps.next;
+            pl = pl.next;
+        }
+         if (ps == pl && pl != null) {
+                return pl;
+            }
+        return null;
+    }
+}
