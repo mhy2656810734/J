@@ -31,15 +31,11 @@ class Solution {
             }
         }
         // 跳出循环以后，可能只有一个链表空了，应该将不为空的连接到后面
-       while (list1 != null) {
+       if (list1 != null) {
            tmp.next = list1;
-            tmp = tmp.next;
-           list1 = list1.next;
        }
-        while (list2 != null) {
+       if (list2 != null) {
            tmp.next = list2;
-           tmp = tmp.next;
-           list2 = list2.next;
        }
        return newHead.next;
     }
