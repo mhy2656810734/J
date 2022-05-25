@@ -24,7 +24,7 @@ package com.bit.demo1;
  * @date 2022-05-19 9:05
  */
 
-// final class Animal 不能再被继承
+// final class Animal     Animal不能再被继承
 class Animal {
     public String name;
     public void eat() {
