@@ -80,7 +80,7 @@ import java.util.Scanner;
 //        animal.eat();
 //          Animal animal = new Cat("nimi");
 //          if ( animal instanceof Bird) {
-//              Bird bird = (Bird)animal; // 强制转换
+//              Bird bird = (Bird)animal; // 强制转换  向下转型
 //              bird.fly();
 //          } else {
 //              System.out.println("错啦");
