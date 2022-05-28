@@ -1,0 +1,21 @@
+import java.util.Scanner;
+public class Main {
+    public static void split(String s) {
+        while(s.length()>=8) {
+            System.out.println(s.substring(0,8));// 截取前八个字符
+            s = s.substring(8);
+        }
+        if (s.length()<8 && s.length()>0) {
+            s+="00000000";
+            System.out.println(s.substring(0,8));// 截取前八个字符
+        }
+    }
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        // 判断是否有下一个字符串
+        while(input.hasNextLine()){
+            String s = input.nextLine();
+            split(s);
+        }
+    }
+}
