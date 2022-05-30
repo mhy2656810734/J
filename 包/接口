@@ -120,3 +120,45 @@ public class text {
         System.out.println(Arrays.toString(student));
     }
 }
+
+
+
+
+补：
+package demo;
+
+/**
+ * @author 26568
+ *  扩展
+ * @date 2022-05-29 19:37
+ */
+interface A {
+     public abstract void fun1();
+}
+interface B {
+    void fun2();
+}
+interface C extends A,B{    // 接口和接口是扩展   这里的extends是继承
+    void fun3();
+}
+class text implements C {   // 类和接口是实现，  当text 接口是C是，不能只重写C中的方法，也要重新A B的方法，因为接口C继承了AB，但是C里面没重写AB方法
+
+    public void fun3(){
+        
+    }
+
+    @Override
+    public void fun1() {
+        
+    }
+
+    @Override
+    public void fun2() {
+
+    }
+}
+public class TextDemo {
+    public static void main(String[] args) {
+
+    }
+}
