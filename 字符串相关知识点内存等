@@ -1,0 +1,36 @@
+/**
+ * @author 26568
+ * @date 2022-06-01 18:15
+ */
+public class TextDemo {
+    public static void main(String[] args) {
+        // 三种定义字符串类型
+//        String str1 = "hello";// str是变量 "hello"放在常量区，只有一份
+//        String str2 = new String("hello");// str2是变量，是引用类型，对象的引用,hello放在常量区
+//        char[] val ={'a','b','c','d','e'};
+//        String str3 = new String(val);
+//        String str1 = "hello";// str1中放的是常量区hello的地址
+//        String str2 = new String("hello");// str2中放的是堆区的对象的地址，对象中的value中方的是常量区的hello的地址
+//        System.out.println(str1 == str2);// false
+//        String str3 = "hello";
+//        System.out.println(str1 == str3);// true
+//        String str = "hel"+"lo";   // 带""的都是常量，常量只有一份，不可以更改
+//        String str1 = "hello";// 编译时期就已经成了hello   常量在编译的时候就已经确定了
+//        System.out.println(str == str1);
+//        String str2 = new String("hel")+"lo";// +号的作用是在堆区重新开辟一片空间存放heo和lo
+//         String str1 = "hello";
+//         String str2 = str1;
+//         str2 = "world";
+//        System.out.println(str1 == str2);// false  str1的值不会改变，因为str2的指向变了，常量hello不能更改
+//        String str1 = "hello";
+//        String str2 = new String("hello");
+//        System.out.println(str1 == str2);// false 比较的是引用
+//        System.out.println(str1.equals(str2));// 比较的是内容
+//        // 使用equals时注意 "hello“.equals(str2) 这种方法最好，因为如果str1为空,这个表达式就错误了
+//        // 一般情况下，如果调用equals,没有重写的话，默认调用的是Object的equals方法，它的实现是默认比较引用是否相同
+        String str1 = "hello";
+        String str2 = new String("hello").intern();
+        System.out.println(str1 == str2);// true
+        // intern() 手动入池,从现象上看的，当前的这个字符串是否在常量池中存在，如果存在，把常量池当中的引用 赋值给当前的引用类型变量
+    }
+}
