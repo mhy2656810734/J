@@ -1,0 +1,20 @@
+// 双指针法:让fast和slow指向0下标处
+// 让fast开始走，如果发现nums[fast] != val时，将此时fast的值先放到show位置处再让show++
+// show的位置就是数组长度
+class Solution {
+    public int removeElement(int[] nums, int val) {
+        int show = 0;
+        int fast = 0;
+        for(;fast < nums.length;fast++) {
+            if (nums[fast] != val) {
+                // 1.先交换
+                if (show != fast) {
+                    nums[show] = nums[fast];
+                }
+                // 2.再++
+                show++;
+            }
+        }
+        return show;
+    }
+}
