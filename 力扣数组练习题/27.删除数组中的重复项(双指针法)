@@ -6,10 +6,13 @@ class Solution {
         for(;fast < nums.length;fast++) {
             // 如果nums[show] 和 nums[fast] 不相等才向前覆盖
             // show != fast 避免自身交换，提高效率
-            if ((nums[show] != nums[fast])&&(show != fast)) {
+            if (nums[show] != nums[fast]) {
                 // 先让show++ 再覆盖
                 show++;
-                nums[show] = nums[fast];
+                if((show != fast)) {
+                    nums[show] = nums[fast];
+                }
+                
             }
         }
         // show就是最后一个元素的下标 +1就是长度
