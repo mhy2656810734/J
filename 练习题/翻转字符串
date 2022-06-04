@@ -1,0 +1,35 @@
+import java.util.Scanner;
+
+/**
+ * @author 26568
+ * @date 2022-06-04 10:58
+ */
+public class TextDemo {
+    public static String reverse(String str,int left,int right) {
+        char[] val = str.toCharArray();
+        while (left < right) {
+            char ch = val[left];
+            val[left] = val[right];
+            val[right] = ch;
+            left++;
+            right--;
+        }
+
+        return new String(val);
+    }
+    public static String func(String str,int input) {
+        if (str == null || input <= 0 || input > str.length()) {
+            return null;
+        }
+        str = reverse(str,0,input-1);
+        str = reverse(str,input,str.length()-1);
+        String ret2 = reverse(str,0,str.length()-1);
+        return ret2;
+    }
+    public static void main(String[] args) {
+        String str = "abcdefg";
+        Scanner scan = new Scanner(System.in);
+        int input = scan.nextInt();
+        System.out.println(func(str,input));
+    }
+}
