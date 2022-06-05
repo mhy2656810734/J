@@ -1,0 +1,97 @@
+import java.util.Scanner;
+
+public class TextDemo {
+    /*
+       异常
+       1.Throwable类是java语言中，所有异常和错误的父类
+       2.
+       Error：错误     由程序员自己解决
+       Exception:异常   可以由程序解决
+       3.
+       3.1 Runtime Exception  运行时异常/非受查异常
+       在程序运行时抛出的异常
+       3.2编译时异常/受查异常
+       在程序编译时的异常
+       4.
+       NUllPointerException:空指针异常
+       StackOverflowerError：栈溢出错误
+       ArrayIndexOutOfBoundsException:数组越界异常
+       5.java 处理异常的语法
+       try {
+       // 可能引起异常代码
+       }catch(参数：异常的类型 e){
+       捕获try当中可能出现的异常
+       }
+       6.用try catch处理异常需要注意的问题
+       1.catch块当中，一定要捕获相应的异常，如果程序抛出的异常，在catch块当中不能被捕获，那么就交给jvm处理
+       2.可以通过catch捕获多个异常
+       3.不建议直接捕获Exception
+       4.finally块当中的代码，无论什么时候都会被执行。
+       5.不建议在finally中出现return语句
+
+       7.
+       如果本方法中没有没有合适的处理异常的方式，就会沿着调用栈向上传递
+       如果向上一直传递都没有合适的方法处理异常，最终就会交给jvm处理，程序就会异常终止。
+
+       8.使用关键字throw，手动抛出异常   格式：throw new + 异常的类型
+       9.自定义异常
+       一定要继承一个父类异常
+       自定义异常最好继承于Exception 这样它必须去处理这个异常
+       继承Exception的异常默认是受查异常
+       继承RuntimeException的异常默认是非受查异常
+     */
+                                              // 声明抛出的异常
+//    public static int divide(int x,int y) throws ArithmeticException{
+//        if (y == 0) {
+//            throw new ArithmeticException("x == 0");
+//        }
+//
+//        return x/y;
+//    }
+    class MyException extends Exception {
+        public MyException() {
+            super();
+        }
+        public MyException(String message) {
+            super(message);
+        }
+    }
+    public  void func(int x) throws MyException {
+        if (x == 10) {
+            throw new MyException("x==10");
+        }
+    }
+    public static void main(String[] args) {
+//        int[] array = {1,2,3};
+//        try{
+//            System.out.println(array[3]);  // try后面跟可能异常的代码
+//            System.out.println("100"); // 这行代码不会被执行
+//        }catch(ArrayIndexOutOfBoundsException e){  // catch后面跟异常种类
+//            e.printStackTrace(); // 打印异常原因
+//            System.out.println("捕获到了数组越界异常");
+//        }catch(NullPointerException e) {
+//            System.out.println("捕获到了空指针异常");
+//        }finally {
+//            System.out.println("finaly块的代码一定会被执行"+"所以经常做一些善后工作，比如关闭资源");
+//        }
+//        System.out.println("hello");// 当程序抛出异常的时候,有catch块进行捕捉，程序自己来处理异常，程序继续向下执行
+//       Scanner scan = new Scanner(System.in);
+//        try{
+//            int n = scan.nextInt();
+//            System.out.println(10 / n);
+//        }catch(ArithmeticException e){
+//            e.printStackTrace();
+//        }finally{
+//            scan.close();
+//        }
+//        int x = 0;
+//        if (x == 0) {
+//            throw new UnsupportedOperationException("x==0");
+//        }
+//        int x = 10;
+//        int y = 0;
+//        divide(x,y);
+//        System.out.println(array[3]);  // 程序在此处发生异常,直接交给jvm处理异常，程序立即停止，不再向下执行
+//        System.out.println("hello");
+    }
+}
