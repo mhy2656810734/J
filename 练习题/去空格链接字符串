@@ -1,0 +1,16 @@
+import java.util.Scanner;
+
+public class TextDemo {
+    public static String func(String str) {
+        String[] str1 = str.split(" ");
+        StringBuffer str2 = new StringBuffer(str1[0]);
+        String ret =  str2.append(str1[1]).toString();
+        return ret;
+    }
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        String str = scan.nextLine();
+        String ret = func(str);
+        System.out.println(ret);
+    }
+}
