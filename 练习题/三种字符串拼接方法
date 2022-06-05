@@ -1,0 +1,10 @@
+    public static void main2(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        String str1 = scan.nextLine();
+        StringBuffer str = new StringBuffer(str1);
+        String str2 = scan.nextLine();
+        System.out.println(str.append(str2));
+       // System.out.println(str1+str2);
+       // System.out.println(str1.concat(str2));
+
+    }
