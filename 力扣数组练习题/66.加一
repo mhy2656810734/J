@@ -1,0 +1,18 @@
+class Solution {
+    public int[] plusOne(int[] digits) {
+        // 循环让所有加一满十的位置向前进一
+        for (int i = digits.length-1; i >= 0 ;i--) {
+            digits[i]++;
+            digits[i] %= 10;
+            // 如果没有满十直接加一返回
+            // 如果满十的话，让i的前一个位置继续加一
+            if (digits[i] != 0) {
+                return digits;
+            }
+        }
+        // 到这个位置说明，原来数组里面全是9
+        digits = new int[digits.length +1];
+        digits[0] = 1;// 让最高位为1即可
+        return digits;
+    }
+}
