@@ -1,0 +1,19 @@
+class Solution {
+    // 摩尔投票法  每次减掉不相同的，最后count>=1 的那个数就是最多的 
+    public int majorityElement(int[] nums) {
+       int count = 1;
+       int ret = nums[0];
+       for(int num:nums) {
+           if (num != ret) {
+               count--;
+               if (count == 0) {
+                   count = 1;
+                   ret = num;
+               }
+           } else {
+               count++;
+           }
+       }
+       return ret;
+    }
+}
