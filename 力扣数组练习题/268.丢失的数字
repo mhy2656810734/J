@@ -1,0 +1,13 @@
+class Solution {
+    public int missingNumber(int[] nums) {
+        Arrays.sort(nums);
+        int sz = nums.length;// 数组长度
+        int ret = 0;
+        for (int i = 0 ;i < sz; i++) {
+            ret ^= nums[i];
+               ret ^= i;
+        }
+        int a = ret^sz;
+        return a;// 因为最后一个数字没有异或
+     }
+}
