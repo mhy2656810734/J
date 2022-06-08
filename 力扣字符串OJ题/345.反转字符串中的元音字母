@@ -1,0 +1,44 @@
+class Solution {
+    public static void Swap(char[] arr,int left,int right) {
+        char tmp = arr[left];
+        arr[left] = arr[right];
+        arr[right] = tmp;
+    }
+    public String reverseVowels(String s) {
+        int left = 0;
+        int right = s.length() - 1;
+        char[] arr = s.toCharArray();
+        while (left < right) {
+        // 都是元音
+           if (isVowel(arr,left) && isVowel(arr,right)) {
+               Swap(arr,left,right);
+               left++;
+               right--;
+               // left是元音  right 不是元音
+           } else if (isVowel(arr,left) && (isVowel(arr,right) == false)) {
+               right--;
+               // left不是元音，right 是元音
+           } else if (isVowel(arr,right) && (isVowel(arr,left) == false)) {
+               left++;
+               // 都不是元音
+           } else {
+               left++;
+               right--;
+           }
+           
+        }
+        return new String(arr);
+    }
+    // 判断是不是元音
+     public  boolean isVowel(char[] arr,int sz) {
+        if (arr[sz] == 'a' || arr[sz] == 'A'
+        || arr[sz] == 'e' || arr[sz] == 'E'
+        || arr[sz] == 'i' || arr[sz] == 'I'
+        || arr[sz] == 'o' || arr[sz] == 'O'
+        || arr[sz] == 'u' || arr[sz] == 'U') {
+            return true;
+        }
+        return false;
+    }
+}
+ 
