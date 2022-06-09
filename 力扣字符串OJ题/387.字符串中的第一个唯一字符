@@ -1,0 +1,17 @@
+class Solution {
+    public int firstUniqChar(String s) {
+        int[] arr = new int[26];
+        for(int i = 0; i < s.length(); i++) {
+            // 让字符串每一个索引处的数字减去字符a
+            // 得到所有下标，默认值是0
+            arr[s.charAt(i) - 'a']++;
+        }
+        for (int i = 0; i < s.length(); i++) {
+            // 如果该下标处的值为0，说明只出现了一次
+            if (arr[s.charAt(i) - 'a'] == 1) {
+                return i;
+            }
+        }
+        return -1;
+    }
+}
