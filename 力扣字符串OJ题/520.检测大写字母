@@ -1,0 +1,20 @@
+    public boolean detectCapitalUse(String word) {
+        char[] str = word.toCharArray();
+        int count = 0;
+        for (int i = 0; i < str.length; i++) {
+            if (str[i]<='Z' && str[i] >= 'A') {
+                count++;
+            }
+        }
+        if ((str[0]<='Z' && str[0] >= 'A') && count == 1) {
+            return true;
+        } else if (count == str.length) {
+            return true;
+        } else if (count == 0) {
+            return true;
+        }
+         else {
+            return false;
+        }
+    }
+}
