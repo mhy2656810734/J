@@ -1,0 +1,17 @@
+class Solution {
+    public void moveZeroes(int[] nums) {
+        // 用index非0的数据的个数
+        int index = 0;
+        for (int i=0; i < nums.length; i++) {
+            // 将所有非0的数据放到最前面
+            if (nums[i] != 0) {
+                nums[index] = nums[i];
+                index++;
+            }
+        }
+        // 此时index就是非0元素的个数 将此时后面所有元素补0
+        for (int i = index; i < nums.length; i++) {
+            nums[i] = 0;
+        }
+}
+}
