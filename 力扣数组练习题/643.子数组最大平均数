@@ -1,0 +1,20 @@
+class Solution {
+    public double findMaxAverage(int[] nums, int k) {
+        // 先将前K个加起来
+        int max = 0;
+        for (int i = 0; i < k; i++) {
+            max += nums[i];
+        }
+        // 如果数组长度等于给定k
+        if (nums.length == k) {
+            return (double)max / k;
+        }
+        // 如果长度大于k的话从下标为k个开始每次加后面的一个减去最第一个元素
+        int tmp = max;
+        for (int i = k; i <nums.length; i++) {
+            tmp = tmp + nums[i] - nums[i - k];
+            max = Math.max(max,tmp);
+        }
+        return (double)max / k;
+    }
+}
