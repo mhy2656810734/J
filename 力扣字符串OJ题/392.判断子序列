@@ -1,0 +1,18 @@
+bool isSubsequence(char * s, char * t){
+    // 判断s是不是t子串：双指针法
+    // 如果是的话，说明s中的所有字母在t中都是顺序出现
+    while (*s && *t) 
+    {
+        // 如果s中单词出现在t中，让他们一起加加
+        if (*s == *t) {
+            s++;
+        }
+        // 让t一直向后走
+        t++;
+    }
+    if (*s == '\0') 
+    {
+        return true;
+    }
+    return false;
+}
