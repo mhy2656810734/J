@@ -1,0 +1,30 @@
+class Solution {
+    public boolean isHappy(int n) {       
+        /*
+        实现思路：快慢指针，让fast每次 先分两次，让slow分一次
+        如果这个数字可以分到1，那么slow最终会和fast相等
+         */ 
+         int  fast = n;
+         int slow = n;
+         do
+         {
+             slow = squareSum(slow);
+             fast = squareSum(fast);
+             fast = squareSum(fast); 
+         } while (slow != fast);
+         if (fast == 1) {
+             return true;
+         } else {
+             return false;
+         }
+    }
+    private int squareSum(int m) {
+        int z = 0;
+        while ( m != 0) {
+            z += (m % 10)*(m%10);
+            m /= 10;
+    }
+    return z;
+}
+    
+}
