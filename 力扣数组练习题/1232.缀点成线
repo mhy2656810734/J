@@ -1,0 +1,15 @@
+// 通过比较每个点的x y坐标减去第一个点的x y 然后交叉相乘比较，不同的话就不是一条线
+class Solution {
+    public boolean checkStraightLine(int[][] coordinates) {
+        int y = coordinates[1][1] - coordinates[0][1];
+        int x = coordinates[1][0] - coordinates[0][0];
+        for (int i = 2; i < coordinates.length; i++) {
+            int y1 = coordinates[i][1] - coordinates[0][1];
+            int x1 = coordinates[i][0] - coordinates[0][0];
+            if ( x*y1 != x1*y) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
