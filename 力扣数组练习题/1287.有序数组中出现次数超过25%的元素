@@ -1,0 +1,12 @@
+class Solution {
+    public int findSpecialInteger(int[] arr) {
+        // 有序，则当前下标处的数据和25%之间的数字如果都相等证明就是
+        int len = arr.length / 4;
+       for (int i = 0; i < arr.length - len; i++) {
+           if (arr[i] == arr[i + len]) {
+               return arr[i];
+           }
+       }
+       return 0;
+    }
+}
