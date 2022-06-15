@@ -1,0 +1,47 @@
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    public int[] reversePrint(ListNode head) {
+        // 一.栈方法
+    // 1.先计算数组元素的个数
+    // 2.将元素压入栈中
+    // 3.从栈取数据放入数组中
+    // ListNode cur = head;
+    // int count = 0;
+    // Stack stack = new Stack();
+    // while (cur != null) {
+    //     count++;
+    //     stack.push(cur.val);
+    //     cur = cur.next;
+    // }
+    // // 创建数组
+    // int[] arr = new int[count];
+    // int i = 0;
+    // // 从栈取数据放到数组中
+    // while (stack.size() > 0) {
+    //     arr[i++] = (int)stack.pop();
+    // }
+    // return arr;
+    
+    // 二。数组逆序赋值法
+    int count = 0;
+    ListNode cur = head;
+    ListNode node = head;
+    while (cur != null) {
+        count++;
+        cur = cur.next;
+    }
+    int[] arr = new int[count];
+    for (int i = count-1; i >= 0; i--) {
+        arr[i] = node.val;
+        node = node.next;
+    }
+    return arr;
+    }
+}
