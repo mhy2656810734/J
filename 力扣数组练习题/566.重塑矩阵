@@ -1,0 +1,15 @@
+// 思路：对于m*n大小的数组a，第i个元素的位置为a[i/n][i%n] (i/n为所在行，i%n为所在列)
+class Solution {
+    public int[][] matrixReshape(int[][] mat, int r, int c) {
+        int n = mat.length;
+        int m = mat[0].length;
+        if (m*n != r*c) {
+            return mat;
+        }
+        int[][] arr = new int[r][c];
+        for ( int x = 0; x < m * n; x++) {
+            arr[x / c][x % c] =  mat[x / m][x % m];
+        }
+        return arr;
+    }
+}
