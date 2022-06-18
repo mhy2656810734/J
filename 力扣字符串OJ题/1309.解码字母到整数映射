@@ -1,0 +1,15 @@
+class Solution {
+    public String freqAlphabets(String s) {
+        StringBuffer str = new StringBuffer();
+        char[] arr = s.toCharArray();
+        for(int i = arr.length - 1; i >= 0; i--) {
+            // 如果等于‘#’的话说明前面是数字
+            if (arr[i] == '#') {
+                str.append((char)(arr[--i] - 48 + (arr[--i] - 48) * 10 +96));
+            } else {
+                str.append((char)(arr[i] + 48));
+            }
+        }
+        return str.reverse().toString();
+    }
+}
