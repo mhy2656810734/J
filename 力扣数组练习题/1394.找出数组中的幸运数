@@ -1,0 +1,17 @@
+class Solution {
+    public int findLucky(int[] arr) {
+        int[] array = new int[501];
+        // 先统计arr中的每个数字出现的次数
+        for (int i = 0; i < arr.length; i++) {
+            array[arr[i]]++;
+        }
+        // 然后判断array中的每个数字出现的次数和它的下标是不是匹配
+        // 注意一定是逆序判断，因为最大相等出现在下标大的位置
+        for (int j = 500; j > 0; j--) {
+            if (array[j] == j) {
+                return j;
+            }
+        }
+        return -1;
+    }
+}
