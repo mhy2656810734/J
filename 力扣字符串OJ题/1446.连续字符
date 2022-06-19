@@ -1,0 +1,19 @@
+class Solution {
+    public int maxPower(String s) {
+        char[] str = s.toCharArray();
+        int max = -1;
+        int count = 1;
+        
+        for (int i = 0; i < str.length - 1; i++) {
+            if (str[i] == str[i + 1]) {
+                count++;
+            } else {
+                max = Math.max(max,count);
+                count = 1;
+            }
+        }
+        // 这里如果没有进入else判断的话，那么max和count还要取最大值
+          max = Math.max(max,count);
+        return max;
+    }
+}
