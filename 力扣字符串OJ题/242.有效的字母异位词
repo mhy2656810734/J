@@ -1,0 +1,11 @@
+class Solution {
+    public boolean isAnagram(String s, String t) {
+        int n = 0;
+        int m = 0; // 用来让s自己异或不等于0
+        char[] str1 = s.toCharArray();
+        char[] str2 = t.toCharArray();
+        Arrays.sort(str1);
+        Arrays.sort(str2);
+        return Arrays.equals(str1,str2);
+    }
+}
