@@ -1,33 +1,24 @@
-int strStr(char* haystack, char* needle) {
-    if (needle == NULL)
-    {
-        return 0;
-    }
+int strStr(char * haystack, char * needle){
     int n = strlen(haystack);
     int m = strlen(needle);
     if (n < m) {
         return -1;
     }
-    char* s1 = *haystack;
-    char* start = haystack;
-    char* s2 = *needle;
-    char* begin = haystack;
-    while (*start)
+    char* s1 = haystack; //用来比较
+    char* start = haystack;// 用来记录haystack字符串的当前字符的下标
+    char* begin = haystack;// 通过指针-指针的方法求下标的位置 start - begin
+    char* s2 = needle;// 每次读取当前needle的字符
+    while (strlen(start) >= m) // 只要主串剩余长度小于 needle就结束 
     {
-        s1 = start;
-        s2 = needle;
-        while ((*s1 != '\0') && (*s2 != '\0') && (*s1 == *s2))
-        {
+        s1 = start;// 让s1重新回到起点
+        s2 = needle;// 让s2回到第一个字符处
+        while ((*s1 != '\0')&&(*s2 != '\0')&&(*s1 == *s2)) {
             s1++;
-            s2++;
+            s2++; // 每次跳到char类型的下一个字符的位置
         }
         if (*s2 == '\0')
         {
-            return start - begin;
-        }
-        if (*s1 == '\0')
-        {
-            return -1;
+            return start - begin; //此时s2走到头，说明就是start位置开始就是子串
         }
         start++;
     }
