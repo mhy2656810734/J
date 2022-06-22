@@ -1,0 +1,35 @@
+int strStr(char* haystack, char* needle) {
+    if (needle == NULL)
+    {
+        return 0;
+    }
+    int n = strlen(haystack);
+    int m = strlen(needle);
+    if (n < m) {
+        return -1;
+    }
+    char* s1 = *haystack;
+    char* start = haystack;
+    char* s2 = *needle;
+    char* begin = haystack;
+    while (*start)
+    {
+        s1 = start;
+        s2 = needle;
+        while ((*s1 != '\0') && (*s2 != '\0') && (*s1 == *s2))
+        {
+            s1++;
+            s2++;
+        }
+        if (*s2 == '\0')
+        {
+            return start - begin;
+        }
+        if (*s1 == '\0')
+        {
+            return -1;
+        }
+        start++;
+    }
+    return -1;
+}
