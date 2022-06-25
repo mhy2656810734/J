@@ -1,0 +1,67 @@
+class Solution {
+    public String multiply(String num1, String num2) {
+        // 如果有一个字符0就返回0
+        if (num1.equals("0") || num2.equals("0")) {
+            return "0";
+        }
+        char[] arr1 = num1.toCharArray();
+        char[] arr2 = num2.toCharArray();
+        int m = arr1.length;
+        int n = arr2.length;
+        // 创建一个长为m+n的数组，num1*num2的长度不会超过m+n：最大 99*99 = 4位位数
+        int[] result = new int[m+n];
+        // 通过竖式计算，我们可以看出 num1的每一位i和num2的每一位j相乘的结果实际上
+        // 存放在result的i+j的位置上
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                // 将0下标空出来，为了后面进位使用
+                result[i + j + 1] += ((arr1[i] - '0') * (arr2[j] - '0'));
+            }
+        }
+        // 从后往前处理进位
+        for (int j = result.length -1; j > 0; j--) {
+            if (result[j] >= 10) {
+                result[j - 1] += result[j] / 10;
+                result[j] %= 10;
+            }
+        }
+        // 如果没有需要进位的话，就要处理掉0
+        StringBuffer str = new StringBuffer();
+        for (int i:result) {
+            str.append(i);
+        }
+        if (str.charAt(0) == '0') {
+            str.deleteCharAt(0);
+        }
+        return str.toString();
+    }
+}
+// class Solution {
+//     public String multiply(String num1, String num2) {
+//         if (num1.equals("0") || num2.equals("0")) return "0";
+//         char[] n1 = num1.toCharArray();
+//         char[] n2 = num2.toCharArray();
+//         // 分配一个空间，用来存储运算的结果，num1长的数 * num2长的数，结果不会超过num1+num2
+//         int[] result = new int[n1.length + n2.length];
+
+//         // 先不考虑进位问题，根据竖式的乘法运算，num1的第i位与num2的第j位相乘，结果应该存放在结果的第i+j位上
+//         for (int i = 0; i < n1.length; i++) {
+//             for (int j = 0; j < n2.length; j++) {
+//                 result[i + j + 1] += (n1[i] - '0') * (n2[j] - '0');     // (把位置0空出来，存放日后可能出现的进位，所以当前元素放置到第i+j+1位)
+//             }
+//         }
+
+//         //从后往前处理进位
+//         for (int k = result.length - 1; k > 0; k--) {
+//             if (result[k] >= 10) {
+//                 result[k - 1] += result[k] / 10;
+//                 result[k] %= 10;
+//             }
+//         }
+//         StringBuilder sb = new StringBuilder();
+//         for (int i : result) sb.append(i);
+//         //如果位置0没有被产生的进位占据，那么该位为前导0，去除前导0
+//         if (sb.charAt(0) == '0') sb.deleteCharAt(0);
+//         return sb.toString();
+//     }
+// }
