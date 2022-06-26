@@ -1,0 +1,18 @@
+class Solution {
+    public List<Integer> addToArrayForm(int[] num, int k) {
+        List<Integer> list = new ArrayList<>();
+        int i = num.length - 1; // 表示数组下标
+        int add = 0;// 表示需要进位
+        while (i >= 0 || k > 0 || add > 0) {
+            int x = i >= 0 ? num[i] : 0;
+            int y = k % 10 > 0 ? k % 10 : 0;
+            int result = x + y +add;
+            list.add(result % 10);
+            add = result / 10;
+            i--;
+            k /= 10;
+        }
+		Collections.reverse(list);
+        return list;
+    }
+}
