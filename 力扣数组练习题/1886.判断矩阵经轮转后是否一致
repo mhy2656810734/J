@@ -1,0 +1,35 @@
+class Solution {
+    public boolean findRotation(int[][] mat, int[][] target) {
+        // 思路：比较每次旋转后的数组mat是否和target相等
+        int n = mat.length;
+        boolean b1 = true;
+        boolean b2 = true;
+        boolean b3 = true;
+        boolean b4 = true;
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n;j++) {
+                // mat旋转90度后有数据不相等就说明不是旋转90度得到的
+                if (mat[j][n-i-1] != target[i][j]) {
+                    b1 = false;
+                }
+                // 旋转180度
+                if (mat[n-i-1][n-j-1] != target[i][j]) {
+                    b2 = false;
+                }
+                // 旋转270度
+                if (mat[n-j-1][i] != target[i][j]) {
+                    b3 = false;
+                }
+                // 360度
+                if (mat[i][j] != target[i][j]) {
+                    b4 = false;
+                }
+                // 如果当前i j 下标target的值跟mat旋转的四种结果都不相等就说明错误
+                if (!b1 && !b2 && !b3 && !b4) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+}
