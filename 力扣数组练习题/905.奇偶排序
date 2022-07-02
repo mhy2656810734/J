@@ -1,0 +1,18 @@
+class Solution {
+    public int[] sortArrayByParity(int[] nums) {
+        // left正序放偶数 right倒序放奇数
+        int left = 0;
+        int right = nums.length - 1;
+        int i = 0; // 用来遍历数组
+        int[] arr = new int[nums.length];
+        while (i < nums.length) {
+            if (nums[i] % 2 == 0) {
+                arr[left++] = nums[i];
+            } else {
+                arr[right--] = nums[i];
+            }
+            i++;
+        }
+        return arr;
+    }
+}
