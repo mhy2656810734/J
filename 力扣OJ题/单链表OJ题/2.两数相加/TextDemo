@@ -1,0 +1,102 @@
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+// class Solution {
+//     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+//         ListNode newHead = null;
+//         ListNode cur= newHead;// 用来辅助拼接
+//         if (l1 == null) {
+//             return l2;
+//         }
+//         if (l2 == null) {
+//             return l1;
+//         }
+//         int count = 0; // 用来记录是否满10
+//         while (l1 != null && l2 != null) {
+//             int sum = l1.val + l2.val + count;
+//                ListNode node = new ListNode(sum %10);
+//                count = sum / 10;
+//             if (newHead == null) {
+//                 newHead = node;
+//                 cur = node;
+//             } else {
+//                 cur.next = node;
+//                 cur = node;
+//             }
+//             l1 = l1.next;
+//             l2 = l2.next;
+//         }
+//         // 此时需要考虑count的值，count如果不为0的话需要继续加
+//         if (count == 0) {
+//             if (l1 != null) {
+//             cur.next = l1;
+//            }
+//             if (l2 != null) {
+//             cur.next = l2;
+//            }
+//         } else {
+//             while (l1 != null) {
+//                 int sum = l1.val + count;
+//                 ListNode node = new ListNode(sum %10);
+//                 count = sum / 10;
+//                 cur.next = node;
+//                 cur = node;
+//                 if (count == 0) {
+//                     cur.next = l1.next;
+//                     break;
+//                 } else {
+//                     l1 = l1.next;
+//                 }
+//             }
+//                 while (l2 != null) {
+//                 int sum = l2.val + count;
+//                 ListNode node = new ListNode(sum %10);
+//                 count = sum / 10;
+//                 cur.next = node;
+//                 cur = node;
+//                 if (count == 0) {
+//                     cur.next = l2.next;
+//                     break;
+//                 } else {
+//                     l2 = l2.next;
+//                 }
+//             }
+//         }
+//         // 如果最后还有进位
+//         if (count != 0) {
+//             ListNode node = new ListNode(count);
+//             cur.next = node;
+//         }
+//        return newHead;
+//     }
+// }
+class Solution {
+    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        ListNode newHead = new ListNode(0); // 新头结点
+        ListNode cur = newHead; // 辅助结点
+        int count = 0;// 用于记录是否满十
+        while (l1 != null || l2 != null || count != 0) {
+            int val1 = l1 != null ? l1.val : 0;
+            int val2 = l2 != null ? l2.val : 0;
+            int sum = val1 + val2 + count;
+            ListNode node = new ListNode(sum % 10);
+            cur.next = node;
+            cur = node;
+            count = sum / 10;
+            if (l1 != null) {
+                l1 = l1.next;
+            }
+            if (l2 != null) {
+                l2 = l2.next;
+            }
+        }
+        return newHead.next;
+    }
+}
