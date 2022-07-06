@@ -1,0 +1,63 @@
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        // 翻转链表
+        ListNode prev1 = null;
+        ListNode cur1 = l1;
+        ListNode curNext1 = null;
+        ListNode prev2 = null;
+        ListNode cur2 = l2;
+        ListNode curNext2 = null;
+        while (cur1 != null) {
+            curNext1 = cur1.next;
+            cur1.next = prev1;
+            prev1 = cur1;
+            cur1 = curNext1;
+        }
+        while (cur2 != null) {
+            curNext2 = cur2.next;
+            cur2.next = prev2;
+            prev2 = cur2;
+            cur2 = curNext2;
+        }
+        // 此时翻转成功，开始相加
+        int count = 0;
+        ListNode newHead = new ListNode(-1);
+        ListNode cur = newHead;
+        while (prev2 != null || prev1 != null || count > 0) {
+            int val1 = prev1 != null ? prev1.val : 0;
+            int val2 = prev2 != null ? prev2.val : 0;
+            int sum = val1 + val2 + count;
+            ListNode node = new ListNode(sum % 10);
+            cur.next = node;
+            cur = node;
+            count = sum / 10;
+            if (prev1 != null) {
+                prev1 = prev1.next;
+            }
+            if (prev2 != null) {
+                prev2 = prev2.next;
+            }
+        }
+        // 需要再次进行翻转
+        ListNode cur3 = newHead.next;
+        ListNode prev3 = null;
+        ListNode curNext3 = null;
+        while (cur3 != null) {
+            curNext3 = cur3.next;
+            cur3.next = prev3;
+            prev3 = cur3;
+            cur3 = curNext3;
+        }
+        return prev3;
+    }
+}
