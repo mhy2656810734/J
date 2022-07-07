@@ -1,0 +1,40 @@
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    public ListNode rotateRight(ListNode head, int k) {
+        if (head == null || head.next == null || k == 0) {
+            return head;
+        }
+  
+        // 首先统计链表的个数
+        int count = 1;
+        ListNode cur = head;
+        while (cur.next != null) {
+            count++;
+            cur = cur.next;
+        }
+        k %= count;
+        if (k == 0) {
+            return head;
+        }
+        // 将首位相连
+        cur.next = head;
+        // 找到倒数第k+1个结点
+        int i = count - k;
+        while (i > 0) {
+            cur = cur.next;
+            i--;
+        }
+        ListNode newHead = cur.next;
+        cur.next = null;
+        return newHead;
+    }
+}
