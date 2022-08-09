@@ -1,0 +1,72 @@
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+
+ // 实现思路：1.先处理特殊情况：翻转结点相等直接返回
+ //          2.先拿到要翻转的左节点的前一个结点，以及要翻转结点的后一个结点
+        //   3.避免rightleft的值被修改
+        //   4.然后拿到左节点和右结点
+        //   5.从左节点开始进行三指针法翻转链表
+        //   6. 最后需要讨论如果翻转原来头结点，会发现翻转后的新头结点就是需要翻转的右结点
+        //   7. 注意翻转原来头结点时，要让头结点的next指向翻转的右结点的下一个结点
+        //   8. 如果翻转的不是头结点，那就让翻转后原来左节点的前一个结点指向右结点
+        //   9. 让翻转后的左节点指向翻转的右结点的后一个结点   
+class Solution {
+    public ListNode reverseBetween(ListNode head, int left, int right) {
+        // 首先保存right的next结点 和left的前一个结点
+        // 避免left 和 right的值被修改
+        if (left == right) {
+            return head;
+        }
+        int m = left;
+        int n = right;
+        ListNode prevLeft = head;
+        while (left - 1 > 1) {
+            prevLeft = prevLeft.next;
+            left--;
+        }
+         ListNode postRight = head;
+         while (right > 0) {
+             postRight = postRight.next;
+             right--;
+         }
+         // 拿到left和right指向的结点
+         ListNode rightNode = head;
+         ListNode leftNode = head;
+         while (m > 1) {
+             leftNode = leftNode.next;
+             m--;
+         }
+         while (n > 1) {
+             rightNode = rightNode.next;
+             n--;
+         }
+         // 然后开始从leftNode结点开始翻转
+         ListNode prev = null;
+         ListNode cur = leftNode;
+         ListNode curNext = null;
+         while (cur != postRight) {
+             curNext = cur.next;
+             cur.next = prev;
+             prev = cur;
+             cur = curNext;
+             
+         }
+       // 判断翻转的是不是第一个头结点
+       if (head == leftNode) {
+           leftNode.next = postRight;// 让头结点指向右结点的后一个结点
+           return rightNode;
+       } else {
+             prevLeft.next = rightNode;
+             leftNode.next = postRight;
+             return head;
+       }
+    }
+}
