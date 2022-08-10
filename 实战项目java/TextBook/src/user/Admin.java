@@ -17,7 +17,8 @@ public class Admin extends User{
                 new FindOpertion(),
                 new AddOpertion(),
                 new DelOpertion(),
-                new DisplayOpertion()
+                new DisplayOpertion(),
+                new SortOperation
         };
     }
 
