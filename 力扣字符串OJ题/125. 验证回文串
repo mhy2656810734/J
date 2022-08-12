@@ -1,0 +1,31 @@
+class Solution {
+    // 判断该字符是不是有效字符: 字母或者数字
+    public boolean isEffective(char ch) {
+        if (Character.isDigit(ch) || Character.isLetter(ch)) {
+            return true;
+        }
+        return false;
+    }
+    public boolean isPalindrome(String s) {
+        // 先全部转化为小写
+        s = s.toLowerCase();
+        int left = 0;
+        int right = s.length() - 1;
+        while (left < right) {
+            // 让left 走到有效字符处
+            while (left < right && !isEffective(s.charAt(left))) {
+                left++;
+            }
+           while (left < right && !isEffective(s.charAt(right))) {
+                right--;
+            }
+            // 此时都是有效字符
+            if (s.charAt(left) != s.charAt(right)) {
+                return false;
+            }
+            left++;
+            right--;
+        }
+        return true;
+    }
+}
