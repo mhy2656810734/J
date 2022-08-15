@@ -1,0 +1,44 @@
+import java.util.*;
+public class Main {
+    public static void main(String[] args) {
+        // 方法一： 用栈实现
+//         Scanner scan = new Scanner(System.in);
+//         while (scan.hasNextLine()) {
+//             String str = scan.nextLine();
+//             Stack<Character> stack = new Stack<>();
+//             for (int i = 0;i < str.length();i++) {
+//                 char ch = str.charAt(i);
+//                 if (!stack.contains(ch)) {
+//                     stack.add(ch);
+//                 }
+//             }
+//             // 创建一个字符数组接受栈中的数据
+//             char[] arr = new char[stack.size()];
+//             for (int i = arr.length - 1; i >= 0; i--) {
+//                 arr[i] = stack.get(i);
+//             }
+//             String str1 = new String(arr);
+//             System.out.println(str1);
+//         }
+        // 方法二
+        Scanner scan = new Scanner(System.in);
+        while (scan.hasNextLine()) {
+            String str = scan.nextLine();
+            String retString = fun(str);
+            System.out.println(retString);
+            }
+    }
+    public static String fun(String str) {
+        StringBuffer stringBuffer = new StringBuffer();
+        boolean[] arr = new boolean[255];
+        for (int i = 0; i < str.length();i++) {
+            char ch = str.charAt(i);
+            if (arr[ch] == false) {
+                // 说明是第一次拼接
+                stringBuffer.append(ch);
+                arr[ch] = true;
+            }
+        }
+        return stringBuffer.toString();
+    }
+}
