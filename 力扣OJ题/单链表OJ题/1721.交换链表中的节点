@@ -1,0 +1,37 @@
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+ // 实现思路: 先让fast走 k步 然后让slow和fast一起走，fast为空则slow就是倒数第k个结点
+         //  然后再创建一个结点让其走k-1 步 进行交换即可
+class Solution {
+    public ListNode swapNodes(ListNode head, int k) {
+        ListNode fast = head;
+        ListNode slow = head;
+        ListNode prev = head;
+        int m = k;
+        while (k > 0) {
+            fast = fast.next;
+            k--;
+        }
+        // 然后让fast和slow一起走
+        while (fast != null) {
+            fast = fast.next;
+            slow = slow.next;
+        }
+        while (m - 1 > 0) {
+            prev = prev.next;
+            m--;
+        }
+        int temp = slow.val;
+        slow.val = prev.val;
+        prev.val = temp;
+        return head;
+    }
+}
