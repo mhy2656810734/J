@@ -1,0 +1,23 @@
+class Solution {
+    public void rotate(int[] nums, int k) {
+        // 实现思路:三步翻转法 
+        //1.整体翻转  2.先翻转前k-1个数据 3.再翻转后面的数据 
+        int len = nums.length;
+        if ( k >= len) {
+            k %= len;
+        }
+         reverse(nums,0,len-1);
+        reverse(nums,0,k-1);
+        reverse(nums,k,len - 1);
+       
+    }
+    public void reverse(int[] nums,int left,int right) {
+        while (left < right) {
+            int temp = nums[left];
+            nums[left] = nums[right];
+            nums[right] = temp;
+            left++;
+            right--;
+        }
+    }
+}
