@@ -1,0 +1,98 @@
+import java.io.ObjectOutputStream;
+
+/**
+ * 泛型
+ * @author 26568
+ * @date 2022-09-08 11:11
+ */
+public class TextDemo1 {
+//    public static void main(String[] args) {
+//        MyArray<Integer> myArray = new MyArray<>();// 前面写了后面就可以不写
+//        myArray.setValue(0,10);
+//        myArray.setValue(1,20);
+//        Integer ret = myArray.getValue(0);
+//        System.out.println(ret);
+//        MyArray<String> myArray1 = new MyArray<>();
+//        myArray1.setValue(0,"hello");
+//        myArray1.setValue(1,"world");
+//        String ret1 = myArray1.getValue(0);
+//        System.out.println(ret1);
+//
+//    }
+    public static<T extends Comparable<T>> T searchMax(T[] arr) {
+        T max = arr[0];
+        for (int i = 0; i < arr.length; i++){
+            if (max.compareTo(arr[i]) < 0) {
+                max = arr[i];
+            }
+        }
+        return max;
+    }
+    public static void main2(String[] args) {
+//          Text<Integer> text = new Text<>();
+//          Integer[] arr = {1,2,3,4};
+//          Integer ret = text.<Integer>findMax(arr);     //  <Integer> 可以省略
+//          System.out.println(ret);
+         //  Text<Student> text = new Text<>();
+          Student[] students = {new Student(10),new Student(15)};
+         // Student student = text.findMax(students);
+          Student student = searchMax(students);
+          System.out.println(student);
+     }
+
+    public static void main(String[] args) {
+        Message<String> message = new Message<>();
+        message.setMessage("比特就业课欢迎你");
+        get(message);
+    }
+    public static void get(Message<?> temp) { // ?:通配符
+        System.out.println(temp.getMessage());
+    }
+}
+class MyArray<T> {
+    public T[] obj = (T[]) new Object[10];
+    public void setValue(int pos, T value) {
+        this.obj[pos] = value;
+    }
+    public T getValue(int pos) {
+        return this.obj[pos];
+    }
+}
+class Text<T extends Comparable<T>> {
+      public T findMax(T[] arr) {
+          T max = arr[0];
+          for (int i = 0; i < arr.length; i++){
+              if (max.compareTo(arr[i]) < 0) {
+                  max = arr[i];
+              }
+          }
+          return max;
+      }
+}
+class Student implements Comparable<Student> {
+    public int age;
+    public Student(int age) {
+          this.age = age;
+    }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "age=" + age +
+                '}';
+    }
+
+    @Override
+    public int compareTo(Student o) {
+        return this.age - o.age;
+    }
+}
+class Message<T> {
+    private T message;
+    public void setMessage(T message) {
+        this.message = message;
+    }
+    public T getMessage() {
+        return this.message;
+    }
+}
