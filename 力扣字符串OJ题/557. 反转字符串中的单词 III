@@ -1,0 +1,36 @@
+class Solution {
+     public String reverseWords(String s) {
+        int left = 0;
+        int right = 0;
+        char[] arr = s.toCharArray();
+        while (right < s.length() - 1) {
+            while (arr[right] != ' ' && right < s.length() - 1) {
+                right++;
+            }
+            if (right == s.length() - 1) {
+                break;
+            }
+            // 此时right指向空格
+            // 开始交换
+            int temp = right - 1;
+            while (left < temp) {
+                char ch = arr[left];
+                arr[left] = arr[temp];
+                arr[temp] = ch;
+                left++;
+                temp--;
+            }
+            right++;
+            left = right;
+        }
+        // 交换最后一次的left 和 right之间的单词
+        while (left < right) {
+            char ch = arr[left];
+            arr[left] = arr[right];
+            arr[right] = ch;
+            left++;
+            right--;
+        }
+        return new String(arr);
+    }
+}
