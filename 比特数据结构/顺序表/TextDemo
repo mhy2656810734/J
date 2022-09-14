@@ -1,0 +1,30 @@
+package myarraylist;
+
+/**
+ * @author 26568
+ * @date 2022-09-14 14:02
+ */
+public class TextDemo {
+    public static void main(String[] args) {
+        MyArrayList myArrayList = new MyArrayList();
+        myArrayList.add(1);
+        myArrayList.add(2);
+        myArrayList.add(3);
+        myArrayList.disPlay();
+        try{
+            myArrayList.add(3,40);
+        }catch (PosWangException e) {
+            e.printStackTrace();
+        }
+        myArrayList.disPlay();
+        try {
+            System.out.println(myArrayList.get(2));
+        }catch (EmptyException e) {
+            e.printStackTrace();
+        }
+        myArrayList.set(0,15);
+        myArrayList.disPlay();
+        myArrayList.remove(10);
+        myArrayList.disPlay();
+    }
+}
