@@ -1,30 +1,131 @@
 package myarraylist;
 
+import java.util.Arrays;
+
 /**
  * @author 26568
- * @date 2022-09-14 14:02
+ * @date 2022-09-14 13:41
  */
-public class TextDemo {
-    public static void main(String[] args) {
-        MyArrayList myArrayList = new MyArrayList();
-        myArrayList.add(1);
-        myArrayList.add(2);
-        myArrayList.add(3);
-        myArrayList.disPlay();
-        try{
-            myArrayList.add(3,40);
-        }catch (PosWangException e) {
-            e.printStackTrace();
+public class MyArrayList {
+    private int[] elem;// 数组
+    private int usedSize;// 记录放入的数据的个数
+    private final int MAX_SIZE = 10;
+    public MyArrayList() {
+        this.elem = new int[MAX_SIZE];
+    }
+    // 打印顺序表
+    public void disPlay() {
+        for (int i = 0; i < this.usedSize; i++) {
+            System.out.print(this.elem[i] + " ");
         }
-        myArrayList.disPlay();
-        try {
-            System.out.println(myArrayList.get(2));
-        }catch (EmptyException e) {
-            e.printStackTrace();
+        System.out.println();
+    }
+    // 新增元素，默认在数组最后增加
+    public void add(int data) {
+        // 首先需要进行判满操作，如果满的话就需要扩容
+        if (isFull()) {
+            // 满了 需要扩容
+            this.elem = Arrays.copyOf(this.elem,2*this.elem.length);
         }
-        myArrayList.set(0,15);
-        myArrayList.disPlay();
-        myArrayList.remove(10);
-        myArrayList.disPlay();
+        this.elem[usedSize] = data;
+        this.usedSize++;
+    }
+    // 判满
+    public boolean isFull() {
+        return size() >= this.elem.length;
+    }
+    // 在pos位置新增数据
+    public void add(int pos,int data) throws PosWangException{
+        // 首先判满
+        if (isFull()) {
+            // 满了 需要扩容
+            this.elem = Arrays.copyOf(this.elem,2*this.elem.length);
+        }
+        // 其次需要对pos进行合法性判断
+        if (pos < 0 || pos > usedSize) {
+            // 抛出异常
+            throw new PosWangException("pos位置不合法");
+        }
+        // 此时pos位置合法 需要先将pos位置以及后面的数据向后移动一位
+        for (int i = usedSize - 1;i >= pos;i--) {
+            this.elem[i+1] = this.elem[i];
+        }
+        this.elem[pos] = data;
+        this.usedSize++;
+    }
+    // 判断数组是否包含某个元素
+    public boolean contains(int find) {
+        for (int i = 0; i < this.usedSize; i++) {
+            if (this.elem[i] == find) {
+                return true;
+            }
+        }
+        return false;
+    }
+    // 查找某个元素对应的位置
+    public int indexOf(int find) {
+        for (int i = 0; i < this.usedSize; i++) {
+            if (this.elem[i] == find) {
+                return i;
+            }
+        }
+        return -1;
+    }
+    // 获取pos位置的元素
+    public int get(int pos) throws EmptyException{
+        // 首先需要判空
+        if (isEmpty()) {
+            // 为空 抛出异常
+            throw new EmptyException("顺序表为空");
+        }
+        // 然后对pos进行合法性判断
+        if (pos < 0 || pos >= usedSize) {
+            // 抛出异常
+            throw new PosWangException("pos位置不合法");
+        }
+        return this.elem[pos];
+    }
+    public boolean isEmpty() {
+        return size() == 0;
+    }
+    // 给pos位置的元素设置为value
+    public void set(int pos,int value) {
+        // 首先判空
+        if (isEmpty()) {
+            // 为空 抛出异常
+            throw new EmptyException("顺序表为空");
+        }
+        // 判断pos的合法性
+        if (pos < 0 || pos >= usedSize) {
+            // 抛出异常
+            throw new PosWangException("set更新数据的时候，pos位置不合法");
+        }
+        this.elem[pos] = value;
+    }
+    // 删除第一次出现的关键字key
+    public void remove(int key) {
+        // 首先需要判空
+        if (isEmpty()) {
+            // 为空 抛出异常
+            throw new EmptyException("顺序表为空");
+        }
+        int index  = indexOf(key);
+        if (index == -1) {
+            System.out.println("要删除的数据不存在");
+            return;
+        }
+        // 将index位置的数据开始向前覆盖
+        for (int i = index;i < this.usedSize - 1;i++) {
+            this.elem[i] = this.elem[i+1];
+        }
+        this.usedSize--;
+    }
+    // 获取顺序表长度
+    public int size() {
+        return this.usedSize;
+    }
+    // 清空顺序表
+    public void  clear() {
+        this.usedSize = 0;
     }
 }
