@@ -1,0 +1,14 @@
+package myarraylist;
+
+/**
+ * @author 26568
+ * @date 2022-09-14 13:58
+ */
+public class PosWangException extends RuntimeException{
+    public PosWangException() {
+    }
+
+    public PosWangException(String message) {
+        super(message);
+    }
+}
