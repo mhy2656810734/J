@@ -1,0 +1,26 @@
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Stack;
+
+/**
+ * 泛型
+ * 装箱和拆箱
+ * @author 26568
+ * @date 2022-09-08 11:11
+ */
+
+public class TextDemo1 {
+    public static void main(String[] args) {
+        Integer a = 10;// 自动装箱
+        Integer b = new Integer(10);// 手动装箱
+        int c = a;// 自动拆箱
+        int d = b.intValue();// 手动拆箱
+        System.out.println(a);
+        System.out.println(b);
+        System.out.println(c);
+        System.out.println(d);
+    }
+}
+
