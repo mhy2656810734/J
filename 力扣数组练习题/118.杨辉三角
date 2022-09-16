@@ -1,16 +1,40 @@
 class Solution {
     public List<List<Integer>> generate(int numRows) {
+        // List<List<Integer>> list = new ArrayList<>();
+        // for (int i = 0;i < numRows;i++) {
+        //     List<Integer> row = new ArrayList<>();
+        //     for (int j = 0; j <= i;j++) {
+        //         if (j == 0 || i== j) {
+        //             row.add(1);
+        //         } else {
+        //             row.add(list.get(i - 1).get(j-1) + list.get(i- 1).get(j));
+        //         }
+        //     }
+        //     list.add(row);
+        // }
+        // return list;
         List<List<Integer>> list = new ArrayList<>();
-        for (int i = 0;i < numRows;i++) {
-            List<Integer> row = new ArrayList<>();
-            for (int j = 0; j <= i;j++) {
-                if (j == 0 || i== j) {
-                    row.add(1);
-                } else {
-                    row.add(list.get(i - 1).get(j-1) + list.get(i- 1).get(j));
-                }
+        List<Integer> ret = new ArrayList<>();
+        // 先将第一行的1加进去
+        ret.add(1);
+        list.add(ret);
+        // 从第二行开始添加
+        for (int i = 1; i < numRows;i++) {
+            // 先将每行的第一个1添加进去
+            List<Integer> curRow = new ArrayList<>();
+            curRow.add(1);
+            // 中间需要计算
+            List<Integer> prevRow = list.get(i-1);// 前一行
+            for (int j = 1;j < i;j++) {
+                int num = prevRow.get(j)+prevRow.get(j-1);
+                // 然后加入curRow
+                // 在j下标处放入计算的值
+                curRow.add(j,num);
             }
-            list.add(row);
+            // 将每行最后一个1添加
+            curRow.add(1);
+            // 最后加入list
+            list.add(curRow);
         }
         return list;
     }
