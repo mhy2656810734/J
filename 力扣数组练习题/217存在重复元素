@@ -1,0 +1,13 @@
+class Solution {
+    public boolean containsDuplicate(int[] nums) {
+    Set<Integer> set = new HashSet<>();
+    for (int num:nums) {
+        // 添加成功说明没有重复数据
+        // 不成功说明有重复数据
+        if (!set.add(num)){
+            return true;
+        }
+    }
+    return false;
+    }
+}
