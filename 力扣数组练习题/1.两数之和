@@ -1,0 +1,23 @@
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+//  int[] array = new int[]{0,0};
+//         for(int i = 0;i < nums.length;i++) {
+//             for (int j = 0;j < nums.length;j++) {
+//                 if ((nums[i] + nums[j] == target)&&(i != j)) {
+//                     array[0] = i;
+//                     array[1] = j;
+//                 }
+//             }
+//         }
+//         return array;
+       Map<Integer,Integer> map = new HashMap<>();
+       for (int i = 0; i < nums.length;i++) {
+           // 如果当前 target - nums[i] 已经放入了map中， 那么可以直接返回了
+           if (map.containsKey(target- nums[i])) {
+               return new int[]{map.get(target -nums[i]),i};
+           }
+           map.put(nums[i],i);
+       }
+       return null;
+    }
+}
