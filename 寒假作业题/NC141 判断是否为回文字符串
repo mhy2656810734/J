@@ -13,15 +13,24 @@ public class Solution {
         if (str.length() == 1) {
             return true;
         }
+        // 思路一:
         // 一个左到右 一个右到左
-        int left = 0;
-        int right = str.length()-1;
-        while (left <= right) {
-            if (str.charAt(left) != str.charAt(right)) {
+        // int left = 0;
+        // int right = str.length()-1;
+        // while (left <= right) {
+        //     if (str.charAt(left) != str.charAt(right)) {
+        //         return false;
+        //     }
+        //     left++;
+        //     right--;
+        // }
+        //return true;
+        // 思路二:
+        int len = str.length();
+        for (int i = 0; i < len/2;i++) {
+            if (str.charAt(i) != str.charAt(len-1-i)) {
                 return false;
             }
-            left++;
-            right--;
         }
         return true;
     }
