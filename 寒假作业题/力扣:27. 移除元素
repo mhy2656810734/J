@@ -14,5 +14,15 @@ class Solution {
             }
         }
         return slow;
+        int len = nums.length;
+        int left = 0;
+        for(int right = 0; right < len;right++) {
+            // right下标值不等于val就将其赋值到left下标处
+            if (nums[right] != val) {
+                nums[left] = nums[right];
+                left++;
+            }
+        }
+        return left;
     }
 }
