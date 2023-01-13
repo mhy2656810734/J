@@ -1,0 +1,20 @@
+// 核心思路：双指针法
+class Solution {
+    public int removeDuplicates(int[] nums) {
+      int show = 0;
+        int fast = 1;
+        for(;fast < nums.length;fast++) {
+            // 如果nums[show] 和 nums[fast] 不相等才向前覆盖
+            // show != fast 避免自身交换，提高效率
+            if (nums[show] != nums[fast]) {
+                // 先让show++ 再覆盖
+                show++;
+                if((show != fast)) {
+                    nums[show] = nums[fast];
+                }
+            }
+        }
+        // show就是最后一个元素的下标 +1就是长度
+        return show+1;
+    }
+}
