@@ -1,0 +1,26 @@
+class Solution {
+    public boolean isHappy(int n) {
+        // 快慢指针 让fast每次分两次 slow 分一次 如果最后fast和slow都分为1 就说明是快乐数
+        int fast = n;
+        int slow = n;
+        do {
+              slow = squSum(slow);
+            fast = squSum(fast);
+            fast = squSum(fast);
+        } while (slow != fast);
+        // 说明相等
+        if (fast == 1) {
+            return true;
+        }
+        return false;
+
+    }
+    public int squSum(int m) {
+        int z = 0;
+        while (m > 0) {
+            z += (m%10)*(m%10);
+            m /= 10;
+        }
+        return z;
+    }
+}
