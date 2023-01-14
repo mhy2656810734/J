@@ -1,0 +1,18 @@
+class Solution {
+    public boolean isUgly(int n) {
+        // 对n进行反复除2 3 5 最后剩下的是1就是质因数
+        if (n < 1) {
+            return false;
+        }
+        while (n % 5 == 0) {
+             n /= 5;
+        }
+        while (n %3 == 0) {
+            n /= 3;
+        }
+        while (n % 2 == 0) {
+            n /= 2;
+        }
+        return n == 1;
+    }
+}
