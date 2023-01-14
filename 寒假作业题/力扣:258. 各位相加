@@ -1,0 +1,21 @@
+class Solution {
+    // 快慢指针:最后slow 和 fast一定会相等 此时都是个位数
+    public int addDigits(int num) {
+        int slow = num;
+        int fast = num;
+        do {
+            slow = fun(slow);
+            fast = fun(fast);
+            fast = fun(fast);
+        } while (fast != slow);
+        return fast;
+    }
+    public int fun(int m) {
+        int z = 0;
+        while (m > 0) {
+            z += (m %10);
+            m /= 10;
+        }
+        return z;
+    }
+}
