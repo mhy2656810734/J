@@ -1,0 +1,33 @@
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    public ListNode removeDuplicateNodes(ListNode head) {
+        if (head == null) {
+            return null;
+        }
+        // 利用set进行拼接
+        Set<Integer> set = new HashSet<>();
+        set.add(head.val);
+        ListNode cur = head.next;
+        ListNode tail = head;
+        while (cur != null) {
+            if (set.add(cur.val)) {
+                // 如果添加成功,说明这个节点没添加过
+                tail.next = cur;
+                tail = cur;
+            } else {
+                // 没成功就跳过这个节点
+                tail.next = cur.next;
+            }
+            cur = cur.next;
+        }
+        tail.next = null;
+        return head;
+    }
+}
