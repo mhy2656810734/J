@@ -1,0 +1,18 @@
+class Solution {
+    public int lastStoneWeight(int[] stones) {
+        // 默认是小根堆  需要调成大根堆
+        PriorityQueue<Integer> queue = new PriorityQueue<>((a,b) -> b-a);
+        for(int num:stones) {
+            queue.offer(num);
+        }
+        while (queue.size() > 1) {
+            int a = queue.poll();
+            int b = queue.poll();
+            // 将剩余的重量继续插入队列
+            if (a - b > 0) {
+                queue.offer(a-b);
+            }
+        }
+        return queue.isEmpty()?0:queue.poll();
+    }
+}
