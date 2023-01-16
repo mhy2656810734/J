@@ -1,0 +1,20 @@
+class Solution {
+    public int dayOfYear(String date) {
+        // 首先拿到年月日
+        int year = Integer.parseInt(date.substring(0,4));
+        int month = Integer.parseInt(date.substring(5,7));
+        int day =Integer.parseInt(date.substring(8));
+        // 然后创建一个数组 存放12个月的天数
+        int[] months = {31,28,31,30,31,30,31,31,30,31,30,31};
+        // 判断是不是闰年
+        if ((year % 400 == 0) || (year%4 == 0 && year % 100 != 0)) {
+            months[1]++;
+        }  
+        
+        // 开始遍历
+        for (int i = 0; i < month-1;i++) {
+            day += months[i];
+        }
+        return day;
+    }
+}
