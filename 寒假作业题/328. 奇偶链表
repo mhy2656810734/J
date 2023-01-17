@@ -1,0 +1,60 @@
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    public ListNode oddEvenList(ListNode head) {
+        if (head == null) {
+            return null;
+        }
+        // 创建两个节点 分别进行拼接 最后拼接到一起即可
+        ListNode s1 = null;
+        ListNode s2 = null;
+        ListNode end1 = s1;
+        ListNode end2 = s2;
+        ListNode cur =  head;
+        int count = 1;// 用来标记该哪个链表进行拼接了
+        while (cur != null) {
+            ListNode node = new ListNode(cur.val);
+            if (count % 2 != 0) {
+                // 奇数
+                // 先判断头结点是否为空
+                if (s1 == null) {
+                    s1 = node;
+                    end1 = node;
+                } else {
+                    end1.next = node;
+                    end1 = node;
+                }
+            } else {
+                // 偶数
+                if(s2 == null) {
+                    s2 = node;
+                    end2 = node;
+                } else {
+                    end2.next = node;
+                    end2 = node;
+                }
+            }
+            // 最后让count++
+            count++;
+            cur = cur.next;
+        }
+        if (s1 == null) {
+            return s2;
+        }
+        if (s2 == null) {
+            return s1;
+        }
+        // 此时s1和s2都不为空
+        end1.next = s2;
+        end2.next = null;
+        return s1;
+    }
+}
