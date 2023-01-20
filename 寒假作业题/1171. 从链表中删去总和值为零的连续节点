@@ -10,25 +10,55 @@
  */
 class Solution {
     public ListNode removeZeroSumSublists(ListNode head) {
-        // 两次HashMap
-        ListNode newHead = new ListNode();
-        newHead.next = head;
-        int sum = 0;
-        Map<Integer,ListNode> map = new HashMap<>();
-        // 第一次遍历 同一和值将被覆盖
-        ListNode cur = newHead;
-        while (cur != null) {
-            sum += cur.val;
-            map.put(sum,cur);
-            cur = cur.next;
+        // // 两次HashMap
+        // ListNode newHead = new ListNode(0);
+        // newHead.next = head;
+        // int sum = 0;
+        // Map<Integer,ListNode> map = new HashMap<>();
+        // // 第一次遍历 同一和值将被覆盖
+        // ListNode cur = newHead;
+        // while (cur != null) {
+        //     sum += cur.val;
+        //     map.put(sum,cur);
+        //     cur = cur.next;
+        // }
+        // sum = 0;
+        // // 第二次map开始进行拼接
+        // cur = newHead;
+        // while (cur != null) {
+        //     sum += cur.val;
+        //     cur.next = map.get(sum).next;
+        //     cur = cur.next;
+        // }
+        // return newHead.next;
+
+        // 双指针法
+        if (head == null) {
+            return head;
         }
-        sum = 0;
-        // 第二次map开始进行拼接
-        cur = newHead;
-        while (cur != null) {
-            sum += cur.val;
-            cur.next = map.get(sum).next;
-            cur = cur.next;
+        ListNode newHead = new ListNode(0);
+        newHead.next = head;
+        // 前指针
+        ListNode prev = newHead;
+        while (prev != null) {
+            int sum = 0;
+            // 后指针
+            ListNode p = prev.next;
+            while (p != null) {
+                sum += p.val;
+                if (sum == 0) {
+                    // 等于0就跳过prev这个节点以及p这个节点
+                    prev.next = p.next;
+                    break;
+                } else {
+                    p = p.next;
+                }
+            }
+            // 当循环结束后 判断p是否已经走到了末尾
+            if (p == null) {
+                // p为空就移动prev
+                prev = prev.next;
+            }
         }
         return newHead.next;
     }
