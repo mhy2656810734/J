@@ -17,19 +17,41 @@ public class Solution {
         ListNode prev = newHead;
         newHead.next = pHead;
         ListNode cur = pHead;
-        while (cur != null && cur.next != null) {
-            // 判断是否相等
-            if (cur.val == cur.next.val) {
-                // 相等的话就都跳过
-                int val = cur.val;
-                while(cur != null && cur.val == val) {
-                    cur = cur.next;
-                    prev.next = cur;
-                } 
+        // while (cur != null && cur.next != null) {
+        //     // 判断是否相等
+        //     if (cur.val == cur.next.val) {
+        //         // 相等的话就都跳过
+        //         int val = cur.val;
+        //         while(cur != null && cur.val == val) {
+        //             cur = cur.next;
+        //             prev.next = cur;
+        //         } 
+        //     } else {
+        //         // 如果不相等就进行拼接
+        //         prev = cur;
+        //         cur = cur.next;
+        //     }
+        // }
+        // return newHead.next;
+        while (cur != null) {
+            ListNode next = cur.next;
+            if (next == null) {
+                // 只有一个节点
+                return newHead.next;
             } else {
-                // 如果不相等就进行拼接
-                prev = cur;
-                cur = cur.next;
+                // 判断
+                if (cur.val != next.val) {
+                    prev = prev.next;
+                    cur = cur.next;
+                } else {
+                    // 循环删除
+                    while (next != null && next.val == cur.val) {
+                        next = next.next;
+                    }
+                    // 此时next指向第一个不重复的节点
+                    prev.next = next;
+                    cur = next;
+                }
             }
         }
         return newHead.next;
