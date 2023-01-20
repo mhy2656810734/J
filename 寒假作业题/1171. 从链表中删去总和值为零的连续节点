@@ -1,0 +1,35 @@
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    public ListNode removeZeroSumSublists(ListNode head) {
+        // 两次HashMap
+        ListNode newHead = new ListNode();
+        newHead.next = head;
+        int sum = 0;
+        Map<Integer,ListNode> map = new HashMap<>();
+        // 第一次遍历 同一和值将被覆盖
+        ListNode cur = newHead;
+        while (cur != null) {
+            sum += cur.val;
+            map.put(sum,cur);
+            cur = cur.next;
+        }
+        sum = 0;
+        // 第二次map开始进行拼接
+        cur = newHead;
+        while (cur != null) {
+            sum += cur.val;
+            cur.next = map.get(sum).next;
+            cur = cur.next;
+        }
+        return newHead.next;
+    }
+}
