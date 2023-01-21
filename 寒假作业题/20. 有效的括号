@@ -1,0 +1,32 @@
+class Solution {
+    public boolean isValid(String s) {
+        // 左括号入栈 右括号就匹配
+        // 如果右括号出现,栈为空 返回false
+        Stack<Character> stack = new Stack<>();
+        // 遍历字符串
+        for (int i = 0; i < s.length();i++) {
+            char ch = s.charAt(i);
+            if (ch == '{' || ch == '['|| ch == '(') {
+                stack.push(ch);
+            } else {
+                // 先判断栈是否为空
+                if (stack.empty()) {
+                    return false;
+                }
+                // 然后弹出栈顶左括号和当前右括号进行匹配
+                char z = stack.pop();
+                // 开始分情况讨论
+                if ((z == '{' && ch != '}') || 
+                    (z == '(' && ch != ')') ||
+                    (z == '[' && ch != ']')) {
+                        return false;
+                    }
+            }
+        }
+        // 如果栈内还有数据就false
+        if (!stack.empty()) {
+            return false;
+        }
+        return true;
+    }
+}
