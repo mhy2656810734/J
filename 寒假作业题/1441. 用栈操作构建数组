@@ -1,0 +1,26 @@
+class Solution {
+    public List<String> buildArray(int[] target, int n) {
+        // 可以将target数据全部放入set中
+        // 直接从1开始遍历 添加失败就证明有这个数 直接拼接push 成功的话先拼接push 
+        // 再拼接pop
+        Set<Integer> set = new HashSet<>();
+        List<String> list = new LinkedList<>();
+        for (int i = 0; i < target.length;i++) {
+            set.add(target[i]);
+        }
+        int max = target[target.length -1];
+       for (int i = 0; i < n;i++) {
+           if (i+1 > max) {
+               break;
+           }
+           // 先尝试添加进set
+           if (set.add(i+1)) {
+               list.add("Push");
+               list.add("Pop");
+           } else {
+               list.add("Push");
+           }
+       }
+       return list;
+    }
+}
