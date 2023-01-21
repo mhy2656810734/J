@@ -1,0 +1,77 @@
+class MyStack {
+    Queue<Integer> queue1 = null;
+    Queue<Integer> queue2 = null;
+    public MyStack() {
+        queue1 = new LinkedList<>();
+        queue2 = new LinkedList<>();
+    }
+    
+    public void push(int x) {
+        // 谁不为空就放在谁里面 
+        if (!queue1.isEmpty()) {
+            queue1.offer(x);
+        } else if (!queue2.isEmpty()) {
+            queue2.offer(x);
+        } else {
+            queue1.offer(x);
+        }
+    }
+    
+    public int pop() {
+        if (empty()) {
+            return -1;
+        }
+        // 先判断queue2是否为空
+        if (!queue1.isEmpty()) {
+            // 将queue1中留一个然后弹出
+            while (queue1.size() > 1) {
+                queue2.offer(queue1.poll());
+            }
+            // 然后弹出返回即可
+            return queue1.poll();
+        } else {
+              // 将queue2中留一个然后弹出
+            while (queue2.size() > 1) {
+                queue1.offer(queue2.poll());
+            }
+            // 然后弹出返回即可
+            return queue2.poll();
+        }
+    }
+    
+    public int top() {
+        if (empty()) {
+            return -1;
+        }
+        if (!queue1.isEmpty()) {
+            int size = queue1.size();
+            int ret = -1;// 记录每次弹出的数据 最后一次记录值就是栈顶数据
+            for (int i = 0; i < size;i++) {
+                ret = queue1.poll();
+                queue2.offer(ret);
+            }
+            return ret;
+        } else {
+             int size = queue2.size();
+            int ret = -1;// 记录每次弹出的数据 最后一次记录值就是栈顶数据
+            for (int i = 0; i < size;i++) {
+                ret = queue2.poll();
+                queue1.offer(ret);
+            }
+            return ret;
+        }
+    }
+    
+    public boolean empty() {
+        return queue1.isEmpty() && queue2.isEmpty();
+    } 
+}
+
+/**
+ * Your MyStack object will be instantiated and called as such:
+ * MyStack obj = new MyStack();
+ * obj.push(x);
+ * int param_2 = obj.pop();
+ * int param_3 = obj.top();
+ * boolean param_4 = obj.empty();
+ */
